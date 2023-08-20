@@ -9,10 +9,10 @@ from datetime import datetime
 
 
 try:
-    interface = "wlp3s0"
+    interface = input("[?] Interface")
 except KeyboardInterrupt:
-    print("[*] User Requested Shutdown...")
-    print("[*] Exiting...")
+    print("[!] User Requested Shutdown...")
+    print("[!] Exiting...")
     sys.exit(1)
 
 def querysniff(pkt):
@@ -39,4 +39,4 @@ def querysniff(pkt):
             last = str(pkt.getlayer(DNS).qd.qname)
 
 sniff(iface = interface,filter = "port 53", prn = querysniff, store = 0)
-print("\n[*] Shutting Down...")
+print("\n[!] Shutting Down...")
