@@ -4,15 +4,15 @@ import os
 import time
  
 try:
-    interface = input("[*] Enter Desired Interface: ")
-    victimIP = input("[*] Enter Victim IP: ")
-    gateIP = input("[*] Enter Router IP: ")
+    interface = input("[?] Enter Interface: ")
+    victimIP = input("[?] Enter Victim IP: ")
+    gateIP = input("[?] Enter Router IP: ")
 except KeyboardInterrupt:
-    print("\n[*] User Requested Shutdown")
-    print("[*] Exiting...")
+    print("\n[!] User Requested Shutdown")
+    print("[!] Exiting...")
     sys.exit(1)
  
-print("\n[*] Enabling IP Forwarding...\n")
+print("\n[i] Enabling IP Forwarding...\n")
 os.system("echo 1 > /proc/sys/net/ipv4/ip_forward")
 
  
