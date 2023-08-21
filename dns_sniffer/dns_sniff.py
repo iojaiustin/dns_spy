@@ -9,7 +9,7 @@ from datetime import datetime
 
 
 try:
-    interface = input("[?] Interface")
+    interface = input("[?] Interface: ")
 except KeyboardInterrupt:
     print("[!] User Requested Shutdown...")
     print("[!] Exiting...")
