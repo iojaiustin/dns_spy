@@ -10,12 +10,21 @@ from datetime import datetime
 
 try:
     interface = input("[?] Interface: ")
+    print("[!] Listening...")
 except KeyboardInterrupt:
     print("[!] User Requested Shutdown...")
-    print("[!] Exiting...")
+    print("\n[!] Exiting...")
     sys.exit(1)
 
 def querysniff(pkt):
+    patterns = {
+        "tiktok": "[i] User opened tiktok",
+        "instagram": "[i] User opened instagram",
+        "twitter": "[i] User opened twitter",
+        "contacts.icloud.com": "[i] User opened the contacts app",
+        "guzzoni": "[i] User opened/closed their phone"
+    }
+
     if IP in pkt:
         ip_src = pkt[IP].src
         ip_dst = pkt[IP].dst
@@ -24,17 +33,11 @@ def querysniff(pkt):
             now = datetime.now()
             time_str = now.strftime("%H:%M:%S")
 
-            if "tiktok" in str(pkt.getlayer(DNS).qd.qname):
-                print("[",time_str,"]", Fore.GREEN,"[i] User opened tiktok")
-            if "instagram" in str(pkt.getlayer(DNS).qd.qname):
-                print("[",time_str,"]", Fore.GREEN,"[i] User opened instagram")
-            if "twitter" in str(pkt.getlayer(DNS).qd.qname):
-                print("[",time_str,"]", Fore.GREEN,"[i] User opened twitter")
-            if "contacts.icloud.com" in str(pkt.getlayer(DNS).qd.qname):
-                print("[",time_str,"]", Fore.GREEN,"[i] User opened the contacts app")
-            if "guzzoni" in str(pkt.getlayer(DNS).qd.qname):
-            	print("[",time_str,"]", Fore.GREEN,"[i] User opened/closed their phone")
-
+            qname = str(pkt.getlayer(DNS).qd.qname)
+            for webSite, action in patterns.items():
+                if webSite in qname:
+                    print("[", time_str, "]", Fore.GREEN, action)
+                    break  # Exit the loop after the first match
             print("[",time_str,"]", str(ip_src) , " -> " , str(ip_dst) , " : " , "(" + str(pkt.getlayer(DNS).qd.qname) , ")")
             last = str(pkt.getlayer(DNS).qd.qname)
 
