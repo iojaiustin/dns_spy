@@ -1,7 +1,7 @@
 # dns_spy
 Simple dns sniffer writen in python
 
-#LINUX USAGE
+# LINUX USAGE
 
 *1. Run mitm.py*
     1.1 You will be prompted, each by each, three input fields:
