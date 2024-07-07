@@ -3,7 +3,7 @@ Simple dns sniffer writen in python
 
 # LINUX USAGE
 
-1. Run mitm.py
+1. Run mitm.py ##
     1.1 You will be prompted, each by each, three input fields:
         1.1.1 Your interface. Type ```ifconfig``` in your terminal. You will most
                 probably have two interfaces, your *lo*, which is your loopback interface
